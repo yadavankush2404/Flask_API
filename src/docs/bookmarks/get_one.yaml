@@ -1,0 +1,23 @@
+Get one Bookmarks by id
+---
+tags:
+  - Bookmarks
+summary: Retrieve a specific bookmark by ID
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+    required: true
+    description: JWT Token (Bearer <token>)
+  - in: path
+    name: id
+    type: integer
+    required: true
+    description: The ID of the bookmark to retrieve.
+responses:
+  200:
+    description: The requested bookmark object.
+  401:
+    description: Fails to get item due to authentication error.
+  404:
+    description: The requested bookmark was not found.

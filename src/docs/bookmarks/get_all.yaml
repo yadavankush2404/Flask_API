@@ -1,0 +1,60 @@
+
+---
+get: 
+  tags:
+    - Bookmarks
+  parameters:
+    - in: header
+      name: Authorization
+      type: string
+      required: true
+      description: JWT Token (Bearer <token>)
+    - in: query
+      name: page
+      type: integer
+      description: The page number to retrieve.
+      default: 1
+    - in: query
+      name: per_page
+      type: integer
+      description: The number of items per page.
+      default: 5
+  responses:
+    200:
+      description: A paginated list of bookmarks.
+    401:
+      description: Fails to get items due to authentication error.
+
+
+post:
+  tags:
+    - Bookmarks
+  parameters:
+    - in: header
+      name: Authorization
+      type: string
+      required: true
+      description: JWT Token (Bearer <token>)
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        required:
+          - url
+        properties:
+          url:
+            type: string
+            description: The URL to be bookmarked.
+          body:
+            type: string
+            description: A description for the bookmark.
+  responses:
+    201:
+      description: Bookmark created successfully.
+    400:
+      description: Invalid URL was provided.
+    401:
+      description: Fails to create item due to authentication error.
+    409:
+      description: The provided URL already exists.

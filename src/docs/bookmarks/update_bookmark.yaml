@@ -1,0 +1,37 @@
+Update Bookmarks data by id
+---
+tags:
+  - Bookmarks
+summary: Update an existing bookmark
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+    required: true
+    description: JWT Token (Bearer <token>)
+  - in: path
+    name: id
+    type: integer
+    required: true
+    description: The ID of the bookmark to update.
+  - in: body
+    name: body
+    required: true
+    schema:
+      type: object
+      properties:
+        url:
+          type: string
+          description: The new URL for the bookmark.
+        body:
+          type: string
+          description: The new description for the bookmark.
+responses:
+  200:
+    description: Bookmark updated successfully.
+  400:
+    description: Invalid URL was provided.
+  401:
+    description: Fails to update item due to authentication error.
+  404:
+    description: The bookmark to update was not found.
